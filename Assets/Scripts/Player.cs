@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [Header("Move Info")]
     public float moveSpeed = 8f;
     public float jumpForce;
+    public int facingDirection { get; private set; } = 1;
+    private bool facingRight = true;
 
     [Header("Collission Info")]
     [SerializeField] private Transform groundCheck;
@@ -59,6 +61,7 @@ public class Player : MonoBehaviour
     public void SetVelocity(float xVelocity, float YVelocity)
     {
         rb.velocity = new Vector2(xVelocity, YVelocity);
+        FlipController(xVelocity);
     }
 
     public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
@@ -67,6 +70,24 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+    }
+
+    public void Flip()
+    {
+        facingDirection *= -1;
+        facingRight = !facingRight;
+        transform.Rotate(0, 180, 0);
+    }
+
+    public void FlipController(float x)
+    {
+        if(x > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if(x < 0 && facingRight) {
+            Flip();
+        }
     }
 
 
