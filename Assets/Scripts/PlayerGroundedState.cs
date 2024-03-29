@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerGroundedState
+public class PlayerGroundedState : PlayerState
 {
-    public PlayerIdleState(Player player, PlayerStateMachine playerStateMachine, string animBoolName) : base(player, playerStateMachine, animBoolName)
+    public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
-
     }
 
     public override void Enter()
@@ -23,9 +22,10 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Update();
 
-        if (xInput != 0) 
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            stateMachine.ChangeState(player.moveState);
+            stateMachine.ChangeState(player.jumpState);
         }
-    }   
+    }
+
 }
