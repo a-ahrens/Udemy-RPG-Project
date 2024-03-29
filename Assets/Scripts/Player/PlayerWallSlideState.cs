@@ -22,6 +22,11 @@ public class PlayerWallSlideState : PlayerState
     {
         base.Update();
 
+        if(Input.GetKey(KeyCode.Space)) {
+            stateMachine.ChangeState(player.wallJumpState);
+            return;
+        }
+
         if(yInput < 0)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
@@ -33,6 +38,11 @@ public class PlayerWallSlideState : PlayerState
 
         if((xInput != 0 && player.facingDirection != xInput) 
             || player.IsGroundDetected())
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
+
+        if(player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.idleState);
         }
