@@ -106,6 +106,11 @@ public class Player : MonoBehaviour
 
     private void CheckForDashInput()
     {
+        if(IsWallDetected())
+        {
+            return;
+        }
+
         dashUsageTimer -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
