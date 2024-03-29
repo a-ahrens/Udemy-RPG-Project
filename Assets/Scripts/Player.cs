@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    [Header("Move Info")]
+    public float moveSpeed = 8f;
+
     #region Components
     public Animator anim {  get; private set; }
+    public Rigidbody2D rb { get; private set; }
 
     #endregion
 
@@ -27,11 +32,18 @@ public class Player : MonoBehaviour
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+
         stateMachine.Initialize(idleState);
     }
     private void Update()
     {
         stateMachine.currentState.Update();
+    }
+
+    public void SetVelocity(float xVelocity, float YVelocity)
+    {
+        rb.velocity = new Vector2(xVelocity, YVelocity);
     }
 
 }
