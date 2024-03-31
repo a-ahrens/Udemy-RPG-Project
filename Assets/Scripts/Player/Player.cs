@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    #region Movement
     [Header("Move Info")]
     public float moveSpeed = 8f;
     public float jumpForce;
@@ -18,13 +18,17 @@ public class Player : MonoBehaviour
 
     public int facingDirection { get; private set; } = 1;
     private bool facingRight = true;
+    #endregion
 
+    #region Collision
     [Header("Collission Info")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float wallCheckDistance;
     [SerializeField] private LayerMask whatIsGround;
+
+    #endregion
 
     #region Components
     public Animator anim {  get; private set; }
@@ -42,6 +46,8 @@ public class Player : MonoBehaviour
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerDashState dashState { get; private set; }
 
+    public PlayerPrimaryAttack primaryAttack { get; private set; }
+
 
     #endregion
 
@@ -56,6 +62,8 @@ public class Player : MonoBehaviour
         wallSlideState = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "WallJump");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
+
+        primaryAttack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
     }
 
     private void Start()
@@ -70,6 +78,7 @@ public class Player : MonoBehaviour
         stateMachine.currentState.Update();
         CheckForDashInput();
     }
+    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
     public void SetVelocity(float xVelocity, float YVelocity)
     {
