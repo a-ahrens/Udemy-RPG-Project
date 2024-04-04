@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 133897864}
   - component: {fileID: 133897865}
+  - component: {fileID: 133897866}
   m_Layer: 0
   m_Name: BG_Sky_Layer
   m_TagString: Untagged
@@ -293,6 +294,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &133897866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133897863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a527e4dffcccea45b5f8b19eb08f4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxEffect: 1
 --- !u!1 &183777031
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,6 +3732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2141936939}
   - component: {fileID: 2141936940}
+  - component: {fileID: 2141936941}
   m_Layer: 0
   m_Name: BG_City_Layer
   m_TagString: Untagged
@@ -3794,3 +3809,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2141936941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141936938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a527e4dffcccea45b5f8b19eb08f4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxEffect: 0.9
