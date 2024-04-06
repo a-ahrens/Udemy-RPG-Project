@@ -41,7 +41,7 @@ public class Entity : MonoBehaviour
 
     #region Velocity Controls
 
-    public void ZeroVelocity() => rb.velocity = new Vector2(0, 0);
+    public void SetZeroVelocity() => rb.velocity = new Vector2(0, 0);
     public void SetVelocity(float xVelocity, float YVelocity)
     {
         rb.velocity = new Vector2(xVelocity, YVelocity);

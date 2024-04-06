@@ -33,11 +33,9 @@ public class SkeletonBattleState : EnemyState
 
         if (enemy.IsPlayerDetected())
         {
-            if(enemy.IsPlayerDetected().distance < enemy.attackDistance) 
+            if(enemy.IsPlayerDetected().distance < enemy.attackDistance && CanAttack()) 
             {
-                Debug.Log("I ATTACK");
-                enemy.ZeroVelocity();
-                return;
+                stateMachine.ChangeState(enemy.attackState);
             }
         }
 
@@ -51,5 +49,16 @@ public class SkeletonBattleState : EnemyState
         }
 
         enemy.SetVelocity(enemy.moveSpeed * moveDirection, rb.velocity.y);
+    }
+
+    private bool CanAttack()
+    {
+        if(Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown)
+        {
+            enemy.lastTimeAttacked = Time.time;
+            return true;
+        }
+
+        return false;
     }
 }

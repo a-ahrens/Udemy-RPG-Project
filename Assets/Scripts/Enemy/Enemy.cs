@@ -13,6 +13,8 @@ public class Enemy : Entity
 
     [Header("Attack Info")]
     public float attackDistance;
+    public float attackCooldown;
+    [HideInInspector] public float lastTimeAttacked;
 
 
     public EnemyStateMachine stateMachine { get; private set; }
@@ -28,10 +30,11 @@ public class Enemy : Entity
         base.Update();
 
         stateMachine.currentState.Update();
-        Debug.Log(IsPlayerDetected().collider.gameObject.name + "I SEE");
     }
 
     public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, 50, whatIsPlayer);
+
+    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
     protected override void OnDrawGizmos()
     {
