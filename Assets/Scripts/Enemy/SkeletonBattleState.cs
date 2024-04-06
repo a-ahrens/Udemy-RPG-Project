@@ -33,9 +33,18 @@ public class SkeletonBattleState : EnemyState
 
         if (enemy.IsPlayerDetected())
         {
+            stateTimer = enemy.battleTime;
+
             if(enemy.IsPlayerDetected().distance < enemy.attackDistance && CanAttack()) 
             {
                 stateMachine.ChangeState(enemy.attackState);
+            }
+        }
+        else
+        {
+            if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > 10)
+            {
+                stateMachine.ChangeState(enemy.idleState);
             }
         }
 
@@ -48,7 +57,7 @@ public class SkeletonBattleState : EnemyState
             moveDirection = -1;
         }
 
-        enemy.SetVelocity(enemy.moveSpeed * moveDirection, rb.velocity.y);
+        enemy.SetVelocity(enemy.moveSpeed * 2f * moveDirection, rb.velocity.y);
     }
 
     private bool CanAttack()

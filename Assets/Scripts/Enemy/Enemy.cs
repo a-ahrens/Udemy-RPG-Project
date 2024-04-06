@@ -10,6 +10,7 @@ public class Enemy : Entity
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
+    public float battleTime;
 
     [Header("Attack Info")]
     public float attackDistance;
@@ -32,7 +33,12 @@ public class Enemy : Entity
         stateMachine.currentState.Update();
     }
 
-    public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, 50, whatIsPlayer);
+    //public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, 50, whatIsPlayer);
+    public virtual RaycastHit2D IsPlayerDetected()
+    {
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, 50, whatIsPlayer);
+    }
+
 
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
@@ -41,6 +47,6 @@ public class Enemy : Entity
         base.OnDrawGizmos();
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackDistance * facingDirection, transform.position.y));
-
+        //Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + 5 * facingDirection, transform.position.y));
     }
 }
