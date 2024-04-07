@@ -2012,6 +2012,8 @@ MonoBehaviour:
     m_Bits: 8
   attackCheck: {fileID: 11906550}
   attackCheckRadius: 0.8
+  knockbackDirection: {x: 0, y: 0}
+  knockbackDuration: 0
   attackMovement:
   - {x: 3, y: 1.5}
   - {x: 1, y: 2.5}
@@ -2193,6 +2195,8 @@ MonoBehaviour:
     m_Bits: 8
   attackCheck: {fileID: 2117255917}
   attackCheckRadius: 0.8
+  knockbackDirection: {x: 7, y: 12}
+  knockbackDuration: 0.07
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
