@@ -45,7 +45,7 @@ public class EnemySkeleton : Enemy
 
     }
 
-    protected override bool CanBeStunnedCheck()
+    public override bool CanBeStunnedCheck()
     {
         if(base.CanBeStunnedCheck())
         {
