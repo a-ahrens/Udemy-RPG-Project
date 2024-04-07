@@ -10,6 +10,9 @@ public class Enemy : Entity
     [Header("Stunned Info")]
     public float stunDuration;
     public Vector2 stunDirection;
+    protected bool canBeStunned;
+    [SerializeField] protected GameObject counterImage;
+    
 
     [Header("Move Info")]
     public float moveSpeed;
@@ -43,6 +46,27 @@ public class Enemy : Entity
         return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, 50, whatIsPlayer);
     }
 
+    public virtual void OpenCounterAttackWindow()
+    {
+        canBeStunned = true;
+        counterImage.SetActive(true);
+    }
+
+    public virtual void CloseCounterAttackWindow()
+    {
+        canBeStunned = false;
+        counterImage.SetActive(false);
+    }
+
+    protected virtual bool CanBeStunnedCheck()
+    {
+        if (canBeStunned)
+        {
+            CloseCounterAttackWindow();
+            return true;
+        }
+        return false;
+    }
 
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
