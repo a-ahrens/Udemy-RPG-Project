@@ -20,8 +20,6 @@ public class Player : Entity
     public float dashSpeed;
     public float dashDuration;
     public float dashDirection { get; private set; }
-    [SerializeField] private float dashCooldown;
-    private float dashUsageTimer;
 
     #endregion
 
@@ -79,11 +77,11 @@ public class Player : Entity
             return;
         }
 
-        dashUsageTimer -= Time.deltaTime;
+        
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
         {
-            dashUsageTimer = dashCooldown;
+            
             dashDirection = Input.GetAxisRaw("Horizontal");
 
             if(dashDirection == 0)
