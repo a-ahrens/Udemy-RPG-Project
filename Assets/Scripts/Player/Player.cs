@@ -23,7 +23,7 @@ public class Player : Entity
 
     #endregion
 
-
+    public SkillManager skill { get; private set; }
 
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -62,14 +62,19 @@ public class Player : Entity
     protected override void Start()
     {
         base.Start();
+
+        skill = SkillManager.instance;
+
         stateMachine.Initialize(idleState);
     }
+
     protected override void Update()
     {
         base.Update();
         stateMachine.currentState.Update();
         CheckForDashInput();
     }
+
     private void CheckForDashInput()
     {
         if(IsWallDetected())
